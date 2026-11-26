@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Komsos Paroki Karawaci - Santo Agustinus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Latar -->
+  <div class="stars" id="stars"></div>
+  <div class="snow" id="snow"></div>
+  <canvas id="fireworks"></canvas>
+
+  <!-- Bola Natal menggantung -->
+  <div class="garland">
+    <div class="ball ball-1"></div>
+    <div class="ball ball-2"></div>
+    <div class="ball ball-3"></div>
+    <div class="ball ball-4"></div>
+    <div class="ball ball-5"></div>
+  </div>
+
+  <!-- Pohon kiri -->
+  <div class="tree tree-left">
+    <div class="star-top">★</div>
+    <div class="tree-layer layer1"></div>
+    <div class="tree-layer layer2"></div>
+    <div class="tree-layer layer3"></div>
+    <div class="trunk"></div>
+  </div>
+
+  <!-- Pohon kanan -->
+  <div class="tree tree-right">
+    <div class="star-top">★</div>
+    <div class="tree-layer layer1"></div>
+    <div class="tree-layer layer2"></div>
+    <div class="tree-layer layer3"></div>
+    <div class="trunk"></div>
+  </div>
+
+  <!-- Lilin kiri -->
+  <div class="candle candle-left">
+    <div class="flame"><div class="flame-inner"></div></div>
+    <div class="wick"></div>
+    <div class="wax">
+      <div class="wax-drip drip1"></div>
+      <div class="wax-drip drip2"></div>
+    </div>
+    <div class="candle-glow"></div>
+  </div>
+
+  <!-- Lilin kanan -->
+  <div class="candle candle-right">
+    <div class="flame"><div class="flame-inner"></div></div>
+    <div class="wick"></div>
+    <div class="wax">
+      <div class="wax-drip drip1"></div>
+      <div class="wax-drip drip2"></div>
+    </div>
+    <div class="candle-glow"></div>
+  </div>
+
+  <!-- Tombol tema -->
+  <div class="theme-switcher">
+    <button class="theme-btn active" data-theme="midnight" title="Midnight"></button>
+    <button class="theme-btn" data-theme="aurora" title="Aurora"></button>
+    <button class="theme-btn" data-theme="champagne" title="Champagne"></button>
+    <button class="theme-btn" data-theme="sakura" title="Sakura"></button>
+  </div>
+
+  <!-- ============ HALAMAN 1: MERRY CHRISTMAS ============ -->
+  <main class="card page active" id="pageChristmas">
+    <div class="ornament">🎄</div>
+
+    <p class="greeting-small">Kami Komsos Paroki Karawaci</p>
+    <p class="greeting-church">Gereja Santo Agustinus</p>
+    <p class="greeting-verb">mengucapkan</p>
+
+    <div class="divider"></div>
+
+    <button class="greet-btn christmas" id="btnChristmas">
+      <span class="greet-title">Merry Christmas</span>
+      <span class="greet-date">25 Desember 2026</span>
+    </button>
+
+    <div class="divider"></div>
+
+    <p class="verse-line">“Kemuliaan bagi Allah di tempat yang mahatinggi dan damai sejahtera di bumi.”</p>
+    <p class="verse-ref">Lukas 2:14</p>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" id="toNewYear">Happy New Year →</button>
+    </div>
+
+    <div class="footer-note">Tuhan memberkati 🙏</div>
+  </main>
+
+  <!-- ============ HALAMAN 2: HAPPY NEW YEAR ============ -->
+  <main class="card page" id="pageNewYear">
+    <div class="ornament">🎆</div>
+
+    <p class="greeting-small">Kami Komsos Paroki Karawaci</p>
+    <p class="greeting-church">Gereja Santo Agustinus</p>
+    <p class="greeting-verb">mengucapkan</p>
+
+    <div class="divider"></div>
+
+    <button class="greet-btn newyear" id="btnNewYear">
+      <span class="greet-title">Happy New Year</span>
+      <span class="greet-date">1 Januari 2027</span>
+    </button>
+
+    <div class="divider"></div>
+
+    <p class="verse-line">“Jadikanlah segala sesuatu baru — tahun yang baru, harapan yang baru.”</p>
+    <p class="verse-ref">2 Korintus 5:17</p>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" id="toChristmas">← Merry Christmas</button>
+    </div>
+
+    <div class="footer-note">Tuhan memberkati 🙏</div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

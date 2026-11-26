@@ -1,0 +1,624 @@
+/* ============ PALET MODERN ============ */
+:root {
+  --bg-1: #0a1628;
+  --bg-2: #10263d;
+  --bg-3: #0d3b3b;
+  --accent: #5eead4;
+  --accent-glow: rgba(94, 234, 212, 0.35);
+  --gold: #f5c6a5;
+  --gold-glow: rgba(245, 198, 165, 0.35);
+  --text: #dbe7f0;
+  --text-soft: #7a92a8;
+  --tree-1: #0f3a3a;
+  --tree-2: #155e5e;
+  --tree-3: #1e7a7a;
+  --candle: #f0f4f8;
+  --candle-shadow: #c8d4de;
+  --flame-1: #ffd9a0;
+  --flame-2: #ff9d5c;
+  --flame-glow: rgba(255, 170, 100, 0.5);
+  --card-bg: rgba(16, 38, 61, 0.55);
+  --card-border: rgba(94, 234, 212, 0.25);
+}
+
+body[data-theme="aurora"] {
+  --bg-1: #0a0f2e; --bg-2: #1a1b4b; --bg-3: #2d1b69;
+  --accent: #a78bfa; --accent-glow: rgba(167, 139, 250, 0.35);
+  --gold: #fbcfe8; --gold-glow: rgba(251, 207, 232, 0.35);
+  --text: #e5e0f5; --text-soft: #8a80b8;
+  --tree-1: #1e1b4b; --tree-2: #312e81; --tree-3: #4338ca;
+  --candle: #f0e8ff; --candle-shadow: #c8b8e8;
+  --flame-1: #d8b4fe; --flame-2: #a855f7; --flame-glow: rgba(180, 120, 255, 0.5);
+  --card-bg: rgba(26, 27, 75, 0.55);
+  --card-border: rgba(167, 139, 250, 0.3);
+}
+
+body[data-theme="champagne"] {
+  --bg-1: #1a1410; --bg-2: #2e2419; --bg-3: #3d3020;
+  --accent: #f5d78e; --accent-glow: rgba(245, 215, 142, 0.35);
+  --gold: #f5d78e; --gold-glow: rgba(245, 215, 142, 0.4);
+  --text: #ebe0cc; --text-soft: #a89880;
+  --tree-1: #2e2419; --tree-2: #4a3a20; --tree-3: #6b5028;
+  --candle: #fff5e0; --candle-shadow: #d8c8a8;
+  --flame-1: #ffd9a0; --flame-2: #ff9d5c; --flame-glow: rgba(255, 180, 100, 0.5);
+  --card-bg: rgba(46, 36, 25, 0.6);
+  --card-border: rgba(245, 215, 142, 0.3);
+}
+
+body[data-theme="sakura"] {
+  --bg-1: #1a0e1a; --bg-2: #2d1a2d; --bg-3: #3d2035;
+  --accent: #f9a8d4; --accent-glow: rgba(249, 168, 212, 0.35);
+  --gold: #fbcfe8; --gold-glow: rgba(251, 207, 232, 0.4);
+  --text: #f0d8e8; --text-soft: #a88898;
+  --tree-1: #2d1a2d; --tree-2: #4a2a44; --tree-3: #6b3a5c;
+  --candle: #fff0f5; --candle-shadow: #e0c0d0;
+  --flame-1: #ffc8e0; --flame-2: #f472b6; --flame-glow: rgba(255, 150, 200, 0.5);
+  --card-bg: rgba(45, 26, 45, 0.55);
+  --card-border: rgba(249, 168, 212, 0.3);
+}
+
+/* ============ RESET & BODY ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
+  background-size: 200% 200%;
+  animation: bgShift 18s ease infinite;
+  position: relative;
+  padding: 14px;
+  overflow: hidden;
+  transition: background 0.8s ease;
+}
+
+@keyframes bgShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ============ CANVAS KEMBANG API ============ */
+#fireworks {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  pointer-events: none;
+}
+
+/* ============ BINTANG ============ */
+.stars { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ============ SALJU ============ */
+.snow { position: fixed; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: var(--accent);
+  opacity: 0.6;
+  animation: fall linear infinite;
+  user-select: none;
+  text-shadow: 0 0 6px var(--accent-glow);
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px) translateX(0) rotate(0deg); }
+  100% { transform: translateY(105vh) translateX(40px) rotate(360deg); }
+}
+
+/* ============ GARLAND ============ */
+.garland {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 60px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.ball {
+  position: absolute;
+  top: -50px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, var(--gold) 40%, #8a6a50 100%);
+  box-shadow: 0 0 14px var(--gold-glow);
+  animation: swing 3s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.ball::before {
+  content: "";
+  position: absolute;
+  top: -20px; left: 50%;
+  width: 1px; height: 20px;
+  background: linear-gradient(to bottom, transparent, var(--gold));
+}
+
+.ball-1 { left: 8%; animation-delay: 0s; }
+.ball-2 { left: 26%; animation-delay: 0.4s; background: radial-gradient(circle at 30% 30%, #fff, var(--accent) 40%, #1a6b6b 100%); box-shadow: 0 0 14px var(--accent-glow); }
+.ball-3 { left: 50%; animation-delay: 0.8s; }
+.ball-4 { left: 74%; animation-delay: 1.2s; background: radial-gradient(circle at 30% 30%, #fff, var(--accent) 40%, #1a6b6b 100%); box-shadow: 0 0 14px var(--accent-glow); }
+.ball-5 { left: 92%; animation-delay: 1.6s; }
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+/* ============ POHON ============ */
+.tree {
+  position: fixed;
+  bottom: 12px;
+  z-index: 3;
+  width: 120px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+}
+
+.tree-left { left: 2%; animation: treeSway 4s ease-in-out infinite; }
+.tree-right { right: 2%; animation: treeSway 4s ease-in-out infinite reverse; }
+
+@keyframes treeSway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+.star-top {
+  position: relative;
+  text-align: center;
+  font-size: 1.6rem;
+  color: var(--gold);
+  text-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold-glow);
+  animation: starPulse 1.5s ease-in-out infinite;
+  margin-bottom: -6px;
+  z-index: 5;
+}
+
+@keyframes starPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.tree-layer {
+  margin: 0 auto;
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.layer1 { height: 50px; width: 60%; background: linear-gradient(to bottom, var(--tree-3), var(--tree-2)); margin-bottom: -18px; z-index: 3; }
+.layer2 { height: 60px; width: 80%; background: linear-gradient(to bottom, var(--tree-2), var(--tree-1)); margin-bottom: -18px; z-index: 2; }
+.layer3 { height: 70px; width: 100%; background: linear-gradient(to bottom, var(--tree-1), #0a0f1e); z-index: 1; }
+
+.trunk {
+  width: 14px; height: 14px;
+  background: linear-gradient(to bottom, #4a3020, #2a1810);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.tree::after {
+  content: "✦ ✦ ✦";
+  position: absolute;
+  top: 45%; left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent);
+  font-size: 0.6rem;
+  letter-spacing: 7px;
+  text-shadow: 0 0 8px var(--accent);
+  animation: lightsBlink 1.8s infinite;
+  z-index: 6;
+}
+
+@keyframes lightsBlink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ============ LILIN ============ */
+.candle {
+  position: fixed;
+  bottom: 30px;
+  z-index: 4;
+  width: 36px;
+  pointer-events: none;
+}
+
+.candle-left { left: 17%; }
+.candle-right { right: 17%; }
+
+.flame {
+  position: relative;
+  width: 16px; height: 28px;
+  margin: 0 auto -3px;
+  background: radial-gradient(ellipse at 50% 70%, var(--flame-1) 0%, var(--flame-2) 60%, transparent 100%);
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  filter: blur(0.5px);
+  animation: flicker 0.15s infinite alternate ease-in-out;
+  transform-origin: bottom center;
+  box-shadow: 0 0 25px var(--flame-glow), 0 0 50px var(--flame-glow);
+}
+
+.flame-inner {
+  position: absolute;
+  bottom: 5px; left: 50%;
+  transform: translateX(-50%);
+  width: 6px; height: 12px;
+  background: radial-gradient(ellipse at 50% 80%, #fff 0%, var(--flame-1) 60%, transparent 100%);
+  border-radius: 50%;
+  animation: flickerInner 0.1s infinite alternate ease-in-out;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1, 1) rotate(-2deg); opacity: 0.95; }
+  100% { transform: scale(1.08, 0.95) rotate(2deg); opacity: 1; }
+}
+
+@keyframes flickerInner {
+  0% { transform: translateX(-50%) scale(1); }
+  100% { transform: translateX(-50%) scale(1.15, 0.9); }
+}
+
+.wick {
+  width: 2px; height: 5px;
+  background: #3d2510;
+  margin: 0 auto;
+  border-radius: 1px;
+}
+
+.wax {
+  position: relative;
+  width: 30px; height: 60px;
+  margin: 0 auto;
+  background: linear-gradient(to right,
+    var(--candle-shadow) 0%, var(--candle) 30%, var(--candle) 70%, var(--candle-shadow) 100%);
+  border-radius: 4px 4px 6px 6px;
+  box-shadow: inset 0 -5px 10px rgba(0,0,0,0.15), 0 0 30px var(--flame-glow);
+}
+
+.wax-drip { position: absolute; background: var(--candle); border-radius: 0 0 4px 4px; box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
+.drip1 { width: 4px; height: 18px; top: 0; left: 4px; }
+.drip2 { width: 3px; height: 12px; top: 0; right: 5px; }
+
+.candle-glow {
+  position: absolute;
+  top: -30px; left: 50%;
+  transform: translateX(-50%);
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, var(--flame-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.9; transform: translateX(-50%) scale(1.15); }
+}
+
+/* ============ TOMBOL TEMA ============ */
+.theme-switcher {
+  position: fixed;
+  top: 14px; right: 14px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  padding: 7px 11px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.theme-btn {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.theme-btn:hover { transform: scale(1.15); }
+
+.theme-btn.active {
+  border-color: #fff;
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.theme-btn[data-theme="midnight"]  { background: linear-gradient(135deg, #0a1628, #0d3b3b); }
+.theme-btn[data-theme="aurora"]    { background: linear-gradient(135deg, #0a0f2e, #2d1b69); }
+.theme-btn[data-theme="champagne"] { background: linear-gradient(135deg, #1a1410, #3d3020); }
+.theme-btn[data-theme="sakura"]    { background: linear-gradient(135deg, #1a0e1a, #3d2035); }
+
+/* ============ KARTU / HALAMAN ============ */
+.card {
+  position: absolute;
+  z-index: 10;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  padding: 26px 30px;
+  max-width: 520px;
+  max-height: calc(100dvh - 28px);
+  width: calc(100% - 28px);
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), 0 0 40px var(--accent-glow);
+  transition: border 0.5s ease, box-shadow 0.5s ease, background 0.5s ease,
+              opacity 0.6s ease, transform 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(60px) scale(0.95);
+  pointer-events: none;
+}
+
+.page.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+  animation: fadeUp 0.7s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ornament {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  animation: float 2.5s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.greeting-small {
+  color: var(--text);
+  font-size: clamp(0.72rem, 2.2vw, 0.88rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+  transition: color 0.5s ease;
+}
+
+.greeting-church {
+  color: var(--accent);
+  font-size: clamp(0.92rem, 2.8vw, 1.12rem);
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 18px var(--accent-glow);
+  transition: color 0.5s ease;
+}
+
+.greeting-verb {
+  color: var(--text-soft);
+  font-size: clamp(0.7rem, 2vw, 0.82rem);
+  font-style: italic;
+  letter-spacing: 1.5px;
+}
+
+.divider {
+  width: 80px;
+  height: 1.5px;
+  margin: 12px auto;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* ============ TOMBOL UCAPAN BESAR ============ */
+.greet-btn {
+  position: relative;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1.5px solid var(--accent);
+  background: rgba(94, 234, 212, 0.08);
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.greet-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.greet-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px var(--accent-glow), 0 0 20px var(--accent-glow);
+  border-color: var(--gold);
+}
+
+.greet-btn:hover::before { opacity: 1; }
+.greet-btn:active { transform: scale(0.97); }
+
+.greet-btn.newyear {
+  border-color: var(--gold);
+  background: rgba(245, 198, 165, 0.08);
+}
+
+.greet-btn.newyear::before {
+  background: radial-gradient(circle at 50% 0%, var(--gold-glow) 0%, transparent 70%);
+}
+
+.greet-btn.newyear:hover {
+  box-shadow: 0 8px 30px var(--gold-glow), 0 0 20px var(--gold-glow);
+  border-color: var(--accent);
+}
+
+.greet-title {
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  text-shadow: 0 0 15px var(--accent-glow);
+  transition: color 0.5s ease;
+}
+
+.greet-btn.newyear .greet-title {
+  color: var(--gold);
+  text-shadow: 0 0 15px var(--gold-glow);
+}
+
+.greet-date {
+  font-size: clamp(0.75rem, 2.2vw, 0.88rem);
+  letter-spacing: 2px;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.greet-btn.shake {
+  animation: btnShake 0.5s ease;
+}
+
+@keyframes btnShake {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(0.95) rotate(-1deg); }
+  60% { transform: scale(1.05) rotate(1deg); }
+}
+
+/* ============ NAVIGASI ANTAR HALAMAN ============ */
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--text-soft);
+  color: var(--text-soft);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-family: 'Georgia', serif;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+/* ============ TEKS BAWAH ============ */
+.verse-line {
+  color: var(--text);
+  font-size: clamp(0.72rem, 2.1vw, 0.85rem);
+  line-height: 1.55;
+  font-style: italic;
+  margin-bottom: 3px;
+  transition: color 0.5s ease;
+}
+
+.verse-ref {
+  color: var(--accent);
+  font-size: clamp(0.66rem, 1.9vw, 0.78rem);
+  letter-spacing: 1.5px;
+  opacity: 0.85;
+  transition: color 0.5s ease;
+}
+
+.footer-note {
+  margin-top: 12px;
+  font-size: 0.7rem;
+  color: var(--text-soft);
+  letter-spacing: 1.5px;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 900px) {
+  .tree { width: 100px; }
+  .candle { bottom: 22px; }
+  .candle-left { left: 12%; }
+  .candle-right { right: 12%; }
+}
+
+@media (max-width: 700px) {
+  body { padding: 12px; }
+
+  .tree-left, .tree-right { opacity: 0.25; width: 60px; }
+  .candle-left, .candle-right {
+    opacity: 0.35;
+    transform: scale(0.6);
+    bottom: 10px;
+  }
+  .candle-left { left: 2%; }
+  .candle-right { right: 2%; }
+
+  .garland { height: 40px; }
+  .ball { width: 13px; height: 13px; }
+
+  .card { padding: 20px 18px; border-radius: 18px; }
+
+  .theme-switcher {
+    top: 8px; right: 8px;
+    padding: 5px 8px;
+    gap: 5px;
+  }
+  .theme-btn { width: 18px; height: 18px; }
+
+  .greet-btn { padding: 14px 16px; }
+  .divider { margin: 10px auto; }
+  .footer-note { margin-top: 8px; }
+}
+
+@media (max-width: 380px), (max-height: 600px) {
+  .card { padding: 16px 14px; }
+  .ornament { font-size: 1.1rem; margin-bottom: 2px; }
+  .divider { margin: 8px auto; }
+  .greet-btn { padding: 12px 10px; }
+  .footer-note { margin-top: 6px; font-size: 0.65rem; }
+  .tree { width: 50px; opacity: 0.2; }
+  .candle { transform: scale(0.5); opacity: 0.3; }
+}
